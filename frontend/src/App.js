@@ -1,9 +1,16 @@
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
+
 import './App.css';
+import Post from './pages/post/Post';
 
 function App() {
   return (
     <div className="App">
-      <h1>HI from front-end</h1>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/post' element={<Post />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
