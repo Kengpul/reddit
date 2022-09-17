@@ -5,6 +5,7 @@ import './App.css';
 
 import NavigationBar from './components/Navbar/NavigationBar';
 import Home from './pages/Home/Home';
+import Submit from './pages/Submit/Submit';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <NavigationBar />
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/submit' element={<Submit />} />
         </Routes>
       </BrowserRouter>
     </div>
