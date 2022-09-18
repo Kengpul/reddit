@@ -2,8 +2,6 @@ import { useNavigate } from 'react-router-dom';
 
 import {
     Container,
-    Row,
-    Col,
     Card,
     CardBody,
     Input
@@ -19,16 +17,11 @@ export default function CreatePost() {
 
     return (
         <Container className='createPost'>
-            <Row>
-                <Col md='8'>
-                    <Card className="my-2" inverse>
-                        <CardBody>
-                            <Input onClick={handleCreatePost} placeholder='Create Post' />
-                        </CardBody>
-                    </Card>
-                </Col>
-            </Row>
-
+            <Card className="my-2 " inverse>
+                <CardBody>
+                    <Input onClick={handleCreatePost} placeholder='Create Post' />
+                </CardBody>
+            </Card>
         </Container>
     )
 }

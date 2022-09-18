@@ -5,5 +5,9 @@
 
 .createPost input {
     background-color: #272729;
+    border: 1px solid #272729;
+}
+
+.createPost input:hover {
     border: 1px solid grey;
 }

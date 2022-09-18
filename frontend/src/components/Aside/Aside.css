@@ -1,0 +1,14 @@
+.aside,
+.aside .list-group-item {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+}
+
+.list-group-item:first-of-type {
+    border-top: .5px solid grey;
+}
+
+.list-group-item {
+    border-bottom: .5px solid grey;
+}
