@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+
 import {
     Container,
     Row,
@@ -7,6 +8,7 @@ import {
     CardBody,
     Input
 } from 'reactstrap';
+import './CreatePost.css'
 
 export default function CreatePost() {
     const navigate = useNavigate();
@@ -16,22 +18,12 @@ export default function CreatePost() {
     }
 
     return (
-        <Container>
+        <Container className='createPost'>
             <Row>
                 <Col md='8'>
-                    <Card
-                        className="my-2 "
-                        inverse
-                        style={{
-                            width: '100%',
-                            backgroundColor: '#1A1A1B'
-                        }}
-                    >
+                    <Card className="my-2" inverse>
                         <CardBody>
-                            <Input onClick={handleCreatePost} placeholder='Create Post' style={{
-                                backgroundColor: '#272729',
-                                border: '1px solid grey'
-                            }} />
+                            <Input onClick={handleCreatePost} placeholder='Create Post' />
                         </CardBody>
                     </Card>
                 </Col>

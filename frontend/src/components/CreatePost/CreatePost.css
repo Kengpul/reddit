@@ -1,0 +1,9 @@
+.createPost .card {
+    width: 100%;
+    background-color: var(--primary-color);
+}
+
+.createPost input {
+    background-color: #272729;
+    border: 1px solid grey;
+}

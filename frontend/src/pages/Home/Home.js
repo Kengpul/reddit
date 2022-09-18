@@ -1,11 +1,15 @@
 import CreatePost from "../../components/CreatePost/CreatePost"
+import PostCard from "../../components/Post/PostCard"
+
+import { Container } from 'reactstrap';
 
 export default function Home() {
     return (
-        <div>
+        <Container>
             Home
             <CreatePost />
-        </div>
+            <PostCard />
+        </Container>
 
     )
 }
