@@ -12,6 +12,11 @@ module.exports.createPost = (req, res) => {
     res.json(post);
 }
 
+module.exports.showPost = async (req, res) => {
+    const post = await Post.findById(req.params.id);
+    res.json(post);
+}
+
 module.exports.updatePost = async (req, res) => {
     const { id } = req.params;
     const post = await Post.findByIdAndUpdate(id, req.body, { new: true });

@@ -11,6 +11,7 @@ router.route('/')
     .post(post.createPost)
 
 router.route('/:id')
+    .get(post.showPost)
     .patch(post.updatePost)
     .delete(post.deletePost)
 
