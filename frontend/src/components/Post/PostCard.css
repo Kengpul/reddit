@@ -3,10 +3,6 @@
     color: #fff;
 }
 
-.postCard .card:hover {
-    border: .5px solid grey;
-}
-
 .postCard a {
     text-decoration: none;
 }

@@ -6,6 +6,7 @@ import './App.css';
 import NavigationBar from './components/Navbar/NavigationBar';
 import Home from './pages/Home/Home';
 import Submit from './pages/Submit/Submit';
+import ShowPost from './pages/Post/ShowPost';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/submit' element={<Submit />} />
+          <Route path='/post/:id' element={<ShowPost />} />
         </Routes>
       </BrowserRouter>
     </div>

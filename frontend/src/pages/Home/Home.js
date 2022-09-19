@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import { Container, Row, Col } from 'reactstrap';
+import './Home.css';
 
 import CreatePost from "../../components/CreatePost/CreatePost";
 import PostCard from "../../components/Post/PostCard";
@@ -22,18 +24,20 @@ export default function Home() {
     }, [])
 
     return (
-        <Container>
+        <Container className='home'>
             <Row>
                 <Col md='8'>
                     <CreatePost />
                     {posts && posts.map((post) => (
-                        <PostCard post={post} key={post._id} />
+                        <Link to={`post/${post._id}`} key={post._id}>
+                            <PostCard post={post} className='postCard' />
+                        </Link>
                     ))}
                 </Col>
                 <Col md='4' className="d-none d-md-block">
                     <Aside />
                 </Col>
             </Row>
-        </Container>
+        </Container >
     )
 }

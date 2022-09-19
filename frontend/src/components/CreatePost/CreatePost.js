@@ -17,7 +17,7 @@ export default function CreatePost() {
 
     return (
         <Container className='createPost'>
-            <Card className="my-2 " inverse>
+            <Card className="my-4" inverse>
                 <CardBody>
                     <Input onClick={handleCreatePost} placeholder='Create Post' />
                 </CardBody>

@@ -8,7 +8,7 @@ import './Aside.css';
 
 export default function Aside() {
     return (
-        <Card color='dark' className='aside my-2'>
+        <Card color='dark' className='aside my-4'>
             <CardHeader>
                 Your subreddits
             </CardHeader>
