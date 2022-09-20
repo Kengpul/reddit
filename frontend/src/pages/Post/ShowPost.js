@@ -23,7 +23,7 @@ export default function ShowPost() {
         <Container>
             <Row>
                 <Col md='8' className="my-2">
-                    {post && <PostCard post={post} />}
+                    {post && <PostCard post={post} options={true} />}
                 </Col>
                 <Col md='4' className='d-none d-md-block'>
                     <Aside />

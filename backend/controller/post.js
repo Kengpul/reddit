@@ -24,6 +24,6 @@ module.exports.updatePost = async (req, res) => {
 }
 
 module.exports.deletePost = async (req, res) => {
-    const post = await Post.deleteOne(req.params);
+    const post = await Post.deleteOne({ _id: req.params.id });
     res.json(post);
 }

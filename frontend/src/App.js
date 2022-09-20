@@ -17,6 +17,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/submit' element={<Submit />} />
           <Route path='/post/:id' element={<ShowPost />} />
+          <Route path='/post/:id/edit' element={<Submit />} />
         </Routes>
       </BrowserRouter>
     </div>

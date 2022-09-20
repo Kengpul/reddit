@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import {
     Container,
@@ -19,6 +20,22 @@ export default function Submit() {
     const [error, setError] = useState(null);
     const [checkTitle, setCheckTitle] = useState(false);
     const [checkText, setCheckText] = useState(false);
+    const { id } = useParams();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (id) {
+            const fetchPost = async () => {
+                const response = await fetch(`/post/${id}`);
+                const json = await response.json();
+                if (response.ok) {
+                    setTitle(json.title);
+                    setText(json.text);
+                }
+            }
+            fetchPost();
+        }
+    }, [id])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -27,8 +44,11 @@ export default function Submit() {
         if (!title) return setCheckTitle(true);
         if (!text) return setCheckText(true);
 
-        const response = await fetch('/post', {
-            method: 'POST',
+
+        const query = id ? `/post/${id}` : '/post';
+
+        const response = await fetch(query, {
+            method: id ? 'PATCH' : 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -46,6 +66,7 @@ export default function Submit() {
 
         setTitle('');
         setText('');
+        navigate(`/post/${json._id}`);
     }
 
     return (
