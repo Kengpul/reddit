@@ -4,11 +4,11 @@ const { Schema } = mongoose;
 const postSchema = new Schema({
     title: {
         type: String,
-        require: true
+        required: [true, 'title cannot be blank!']
     },
     text: {
         type: String,
-        require: true
+        required: [true, 'title cannot be blank!']
     },
     author: {
         type: Schema.Types.ObjectId,

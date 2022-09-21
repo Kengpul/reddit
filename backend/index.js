@@ -5,6 +5,7 @@ if (process.env.NODE_ENV !== 'production') {
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const ExpressError = require('./utils/ExpressError');
 
 const postRoutes = require('./routes/post');
 
@@ -19,6 +20,16 @@ db.once('open', () => {
 app.use(express.json());
 
 app.use('/post', postRoutes);
+
+app.all('*', (req, res, next) => {
+    next(new ExpressError('Page Not Found', 404));
+})
+
+app.use((error, req, res, next) => {
+    const { statusCode = 500 } = error;
+    if (!error.message) error.message = 'Something Went Wrong!';
+    res.status(statusCode).json({ error });
+})
 
 app.listen(3000, () => {
     console.log('Listening of Port 3000');

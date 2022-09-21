@@ -1,18 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const post = require('../controller/post');
-
-router.get('/', post.index)
-
-router.post('/', post.createPost)
+const catchAsync = require('../utils/catchAsync');
 
 router.route('/')
-    .get(post.index)
-    .post(post.createPost)
+    .get(catchAsync(post.index))
+    .post(catchAsync(post.createPost))
 
 router.route('/:id')
-    .get(post.showPost)
-    .patch(post.updatePost)
-    .delete(post.deletePost)
+    .get(catchAsync(post.showPost))
+    .patch(catchAsync(post.updatePost))
+    .delete(catchAsync(post.deletePost))
 
 module.exports = router;
