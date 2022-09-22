@@ -7,6 +7,7 @@ import NavigationBar from './components/Navbar/NavigationBar';
 import Home from './pages/Home/Home';
 import Submit from './pages/Submit/Submit';
 import ShowPost from './pages/Post/ShowPost';
+import Error from './pages/Error/Error';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path='/submit' element={<Submit />} />
           <Route path='/post/:id' element={<ShowPost />} />
           <Route path='/post/:id/edit' element={<Submit />} />
+          <Route path='*' element={<Error />} />
         </Routes>
       </BrowserRouter>
     </div>
