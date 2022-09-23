@@ -21,6 +21,7 @@ module.exports.showPost = async (req, res, next) => {
     const { id } = req.params;
     validateId(id, next);
     const post = await Post.findById(id);
+    if (!post) return next(new ExpressError('Cannot find that post!', 400));
     res.json(post);
 }
 

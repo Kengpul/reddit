@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useFetch } from "../../hooks/useFetch";
 
 import { Container, Row, Col } from 'reactstrap';
 import './Home.css';
@@ -7,27 +7,17 @@ import './Home.css';
 import CreatePost from "../../components/CreatePost/CreatePost";
 import PostCard from "../../components/Post/PostCard";
 import Aside from "../../components/Aside/Aside";
+import PostCardPending from "../../components/Post/PostCardPending";
 
 export default function Home() {
-    const [posts, setPosts] = useState(null);
-
-    useEffect(() => {
-        const fetchPosts = async () => {
-            const response = await fetch('/post');
-            const json = await response.json();
-
-            if (response.ok) {
-                setPosts(json);
-            }
-        }
-        fetchPosts()
-    }, [])
+    const { data: posts, pending } = useFetch('/post');
 
     return (
         <Container className='home'>
             <Row>
                 <Col md='8'>
                     <CreatePost />
+                    {pending && <PostCardPending />}
                     {posts && posts.map((post) => (
                         <Link to={`post/${post._id}`} key={post._id}>
                             <PostCard post={post} className='postCard' />
