@@ -27,10 +27,10 @@ export default function Submit() {
         if (id) {
             const fetchPost = async () => {
                 const response = await fetch(`/post/${id}`);
-                const json = await response.json();
+                const post = await response.json();
                 if (response.ok) {
-                    setTitle(json.title);
-                    setText(json.text);
+                    setTitle(post.title);
+                    setText(post.text);
                 }
             }
             fetchPost();
@@ -44,9 +44,7 @@ export default function Submit() {
         if (!title) return setCheckTitle(true);
         if (!text) return setCheckText(true);
 
-
         const query = id ? `/post/${id}` : '/post';
-
         const response = await fetch(query, {
             method: id ? 'PATCH' : 'POST',
             headers: {
@@ -54,12 +52,10 @@ export default function Submit() {
             },
             body: JSON.stringify({ title, text })
         })
-
         const json = await response.json();
 
         if (response.ok) {
             setError(null);
-            console.log('New post added', json);
         } else {
             setError(json.error);
         }

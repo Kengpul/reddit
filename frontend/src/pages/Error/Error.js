@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react"
-import { useLocation } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 import { Container } from "reactstrap";
 
 export default function Error() {
-    const [error, setError] = useState(null)
+    const [error, setError] = useState(null);
     const location = useLocation();
 
     useEffect(() => {

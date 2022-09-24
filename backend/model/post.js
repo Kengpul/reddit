@@ -8,7 +8,7 @@ const postSchema = new Schema({
     },
     text: {
         type: String,
-        required: [true, 'title cannot be blank!']
+        required: [true, 'text cannot be blank!']
     },
     author: {
         type: Schema.Types.ObjectId,
