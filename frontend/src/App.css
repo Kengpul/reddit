@@ -12,3 +12,13 @@ body {
   background-color: #030303;
   color: #fff;
 }
+
+.nav-user a {
+  color: #ffffff8c;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.nav-user a:hover {
+  color: white;
+}

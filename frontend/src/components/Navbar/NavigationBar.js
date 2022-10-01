@@ -1,11 +1,11 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import {
     Collapse,
     Navbar,
     NavbarToggler,
     NavbarBrand,
-    NavbarText,
 } from 'reactstrap';
 
 export default function NavigationBar() {
@@ -19,7 +19,10 @@ export default function NavigationBar() {
                 <NavbarBrand href="/">Reddit</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
-                    <NavbarText className='ms-auto'>Hi King Paul!</NavbarText>
+                    <div className='ms-auto nav-user'>
+                        <Link to='/login'>Login</Link>
+                        <Link to='/signup'>Signup</Link>
+                    </div>
                 </Collapse>
             </Navbar>
         </div>
