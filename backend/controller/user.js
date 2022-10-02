@@ -33,3 +33,22 @@ module.exports.signup = async (req, res, next) => {
         res.status(401).json({ error: e.message });
     }
 }
+
+module.exports.login = async (req, res, next) => {
+    const { email, password } = req.body;
+    if (!email || !password) return next(new ExpressError('All fields are required', 400));
+
+    try {
+        const user = await User.findOne({ email });
+        if (!user) return next(new ExpressError('Email or password wrong!', 400));
+
+        const match = await bcrypt.compare(password, user.password);
+        if (!match) return next(new ExpressError('Email or password wrong!', 400));
+
+        const token = createToken(user._id);
+
+        res.status(200).json({ email, token });
+    } catch (e) {
+        res.status(400).json({ error: e.message });
+    }
+}
