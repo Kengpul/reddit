@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const post = require('../controller/post');
 const catchAsync = require('../utils/catchAsync');
+const { requireAuth } = require('../middleware');
+
+router.use(requireAuth);
 
 router.route('/')
     .get(catchAsync(post.index))
