@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useAuthContext } from '../../hooks/useAuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { formatDistanceToNow } from 'date-fns';
 
@@ -21,11 +22,16 @@ export default function PostCard({ post, options }) {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const toggle = () => setDropdownOpen((prevState) => !prevState);
     const navigate = useNavigate();
+    const { user } = useAuthContext();
 
     const handleDelete = async (id) => {
+        if (!user) return;
         const response = await fetch(`/post/${id}`, {
             method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' }
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
+            }
         })
         if (response.ok) {
             navigate('/');

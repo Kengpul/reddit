@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 import {
     Container,
@@ -22,20 +23,23 @@ export default function Submit() {
     const [checkText, setCheckText] = useState(false);
     const { id } = useParams();
     const navigate = useNavigate();
+    const { user } = useAuthContext();
 
     useEffect(() => {
         if (id) {
             const fetchPost = async () => {
-                const response = await fetch(`/post/${id}`);
+                const response = await fetch(`/post/${id}`, {
+                    headers: { 'Authorization': `Bearer ${user.token}` }
+                });
                 const post = await response.json();
                 if (response.ok) {
                     setTitle(post.title);
                     setText(post.text);
                 }
             }
-            fetchPost();
+            if (user) fetchPost();
         }
-    }, [id])
+    }, [id, user])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -43,12 +47,14 @@ export default function Submit() {
         setCheckText(false);
         if (!title) return setCheckTitle(true);
         if (!text) return setCheckText(true);
+        if (!user) return setError('Unauthorized');
 
         const query = id ? `/post/${id}` : '/post';
         const response = await fetch(query, {
             method: id ? 'PATCH' : 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             },
             body: JSON.stringify({ title, text })
         })
