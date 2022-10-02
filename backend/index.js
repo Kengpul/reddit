@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const ExpressError = require('./utils/ExpressError');
 
 const postRoutes = require('./routes/post');
+const userRoutes = require('./routes/user');
 
 const dbUrl = process.env.MONGO_URI || 'mongodb://localhost:27017/reddit';
 mongoose.connect(dbUrl);
@@ -19,6 +20,7 @@ db.once('open', () => {
 
 app.use(express.json());
 
+app.use('/', userRoutes);
 app.use('/post', postRoutes);
 
 app.all('*', (req, res, next) => {
