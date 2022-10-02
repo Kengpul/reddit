@@ -1,8 +1,10 @@
 import { useState } from "react"
+import { useAuthContext } from "./useAuthContext";
 
 export const useAuthenticate = (auth) => {
     const [error, setError] = useState(null);
     const [isPending, setIsPending] = useState(false);
+    const { dispatch } = useAuthContext();
 
     const authenticate = async (email, password) => {
         setError(null);
@@ -20,6 +22,7 @@ export const useAuthenticate = (auth) => {
             setError(user.error.message);
             setIsPending(false);
         } else {
+            dispatch({ type: 'LOGIN', payload: user });
             localStorage.setItem('user', JSON.stringify(user))
             setIsPending(false);
         }
