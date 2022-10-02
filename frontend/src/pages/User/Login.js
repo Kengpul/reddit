@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useAuthenticate } from '../../hooks/useAuthenticate';
 
 import {
     Container,
@@ -18,6 +19,7 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const [checkEmail, setCheckEmail] = useState(false);
     const [checkPassword, setCheckPassword] = useState(false);
+    const { authenticate, isPending, error } = useAuthenticate('login');
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -26,7 +28,7 @@ export default function Login() {
         if (!email) return setCheckEmail(true);
         if (!password) return setCheckPassword(true);
 
-        console.log(email, password);
+        authenticate(email, password);
     }
 
     return (
@@ -69,9 +71,10 @@ export default function Login() {
                                 Password
                             </Label>
                         </FormGroup>
-                        <Button className='w-100'>
+                        <Button disabled={isPending} className='w-100'>
                             Login
                         </Button>
+                        {error && <div className='error'>{error}</div>}
                     </Form>
                 </Col>
             </Row>

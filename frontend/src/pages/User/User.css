@@ -3,3 +3,7 @@
     background-color: var(--primary-color);
     color: white;
 }
+
+.error {
+    color: #DC3545;
+}
