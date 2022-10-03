@@ -31,6 +31,9 @@ export default function Signup() {
         if (!email) return setCheckEmail(true);
         if (!password) return setCheckPassword(true);
 
+        setCheckUsername(false);
+        setCheckEmail(false);
+        setCheckPassword(false);
         authenticate(username, email, password);
     }
 
@@ -92,7 +95,7 @@ export default function Signup() {
                             </Label>
                         </FormGroup>
                         <Button disabled={isPending} className='w-100'>
-                            Signup
+                            {isPending ? 'Signup...' : 'Signup'}
                         </Button>
                         {error && <div className='error'>{error}</div>}
                     </Form>

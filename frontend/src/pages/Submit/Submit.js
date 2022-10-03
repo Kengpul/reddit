@@ -18,6 +18,7 @@ import './Submit.css'
 export default function Submit() {
     const [title, setTitle] = useState('');
     const [text, setText] = useState('');
+    const [pending, setPending] = useState(false);
     const [error, setError] = useState(null);
     const [checkTitle, setCheckTitle] = useState(false);
     const [checkText, setCheckText] = useState(false);
@@ -45,6 +46,7 @@ export default function Submit() {
         e.preventDefault();
         setCheckTitle(false);
         setCheckText(false);
+        setPending(true);
         if (!title) return setCheckTitle(true);
         if (!text) return setCheckText(true);
         if (!user) return setError('Unauthorized');
@@ -68,6 +70,7 @@ export default function Submit() {
 
         setTitle('');
         setText('');
+        setPending(false);
         navigate(`/post/${json._id}`);
     }
 
@@ -110,8 +113,8 @@ export default function Submit() {
                                 Text
                             </Label>
                         </FormGroup>
-                        <Button className='w-100'>
-                            Submit
+                        <Button disabled={pending} className='w-100'>
+                            {pending ? 'Loading...' : 'Submit'}
                         </Button>
                         {error && <p className='text-danger'>{error}</p>}
                     </Form>

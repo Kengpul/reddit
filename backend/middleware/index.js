@@ -14,7 +14,7 @@ module.exports.requireAuth = async (req, res, next) => {
     try {
         const { _id } = jwt.verify(token, process.env.SECRET);
 
-        req.user = await User.findOne({ _id }).select('_id');
+        req.user = await User.findOne({ _id });
         next();
 
     } catch (e) {
@@ -25,8 +25,8 @@ module.exports.requireAuth = async (req, res, next) => {
 module.exports.isAuthor = async (req, res, next) => {
     const { id } = req.params;
     const post = await Post.findById(id).populate('author', 'username');
-    const user = await User.findById(req.user._id);
-    if (post.author.username !== user.username) {
+
+    if (post.author.username !== req.user.username) {
         return res.status(400).json({ error: 'You dont have permission to do that' });
     }
     next();

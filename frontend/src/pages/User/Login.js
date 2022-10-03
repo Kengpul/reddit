@@ -73,7 +73,7 @@ export default function Login() {
                             </Label>
                         </FormGroup>
                         <Button disabled={isPending} className='w-100'>
-                            Login
+                            {isPending ? 'Login...' : 'Login'}
                         </Button>
                         {error && <div className='error'>{error}</div>}
                     </Form>
