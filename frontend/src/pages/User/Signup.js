@@ -15,8 +15,10 @@ import {
 import './User.css';
 
 export default function Signup() {
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [checkUsername, setCheckUsername] = useState(false);
     const [checkEmail, setCheckEmail] = useState(false);
     const [checkPassword, setCheckPassword] = useState(false);
     const { authenticate, isPending, error } = useAuthenticate('signup');
@@ -25,10 +27,11 @@ export default function Signup() {
         e.preventDefault();
         setCheckEmail(false);
         setCheckPassword(false);
+        if (!username) return setCheckUsername(true);
         if (!email) return setCheckEmail(true);
         if (!password) return setCheckPassword(true);
 
-        authenticate(email, password);
+        authenticate(username, email, password);
     }
 
     return (
@@ -37,6 +40,23 @@ export default function Signup() {
                 <Col md={{ size: 6, offset: 3 }}>
                     <Form onSubmit={handleSubmit} className='my-5'>
                         <h2>Signup</h2>
+                        <FormGroup floating>
+                            <Input
+                                id="username"
+                                name="username"
+                                type="text"
+                                placeholder='username'
+                                onChange={(e) => setUsername(e.target.value)}
+                                value={username}
+                                invalid={checkUsername}
+                            />
+                            <FormFeedback invalid="true">
+                                Username cannot be blank!
+                            </FormFeedback>
+                            <Label for="username">
+                                Username
+                            </Label>
+                        </FormGroup>
                         <FormGroup floating>
                             <Input
                                 id="email"

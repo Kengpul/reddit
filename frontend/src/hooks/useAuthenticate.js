@@ -6,14 +6,14 @@ export const useAuthenticate = (auth) => {
     const [isPending, setIsPending] = useState(false);
     const { dispatch } = useAuthContext();
 
-    const authenticate = async (email, password) => {
+    const authenticate = async (username, email, password) => {
         setError(null);
         setIsPending(true);
 
         const response = await fetch(`/${auth}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({ username, email, password })
         })
 
         const user = await response.json();

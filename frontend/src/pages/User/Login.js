@@ -15,20 +15,21 @@ import {
 import './User.css';
 
 export default function Login() {
-    const [email, setEmail] = useState('');
+    const [email] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [checkEmail, setCheckEmail] = useState(false);
+    const [checkUsername, setChechUsername] = useState(false);
     const [checkPassword, setCheckPassword] = useState(false);
     const { authenticate, isPending, error } = useAuthenticate('login');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setCheckEmail(false);
+        setChechUsername(false);
         setCheckPassword(false);
-        if (!email) return setCheckEmail(true);
+        if (!username) return setChechUsername(true);
         if (!password) return setCheckPassword(true);
 
-        authenticate(email, password);
+        authenticate(username, email, password);
     }
 
     return (
@@ -39,19 +40,19 @@ export default function Login() {
                         <h2>Login</h2>
                         <FormGroup floating>
                             <Input
-                                id="email"
-                                name="email"
-                                type="email"
-                                placeholder='email'
-                                onChange={(e) => setEmail(e.target.value)}
-                                value={email}
-                                invalid={checkEmail}
+                                id="username"
+                                name="username"
+                                type="text"
+                                placeholder='username'
+                                onChange={(e) => setUsername(e.target.value)}
+                                value={username}
+                                invalid={checkUsername}
                             />
                             <FormFeedback invalid="true">
-                                Email cannot be blank!
+                                Username cannot be blank!
                             </FormFeedback>
-                            <Label for="email">
-                                Email
+                            <Label for="username">
+                                Username
                             </Label>
                         </FormGroup>
                         <FormGroup floating>

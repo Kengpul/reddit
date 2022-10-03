@@ -10,7 +10,7 @@ module.exports.index = async (req, res) => {
 module.exports.createPost = async (req, res, next) => {
     const { title, text } = req.body;
     if (!title || !text) {
-        return next(new ExpressError('title or text cannot be blank', 500));
+        return next(new ExpressError('title or text cannot be blank', 400));
     }
     const post = new Post({ title, text });
     await post.save();
