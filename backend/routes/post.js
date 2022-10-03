@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const post = require('../controller/post');
 const catchAsync = require('../utils/catchAsync');
-const { requireAuth } = require('../middleware');
+const { requireAuth, isAuthor } = require('../middleware');
 
 router.use(requireAuth);
 
@@ -12,7 +12,7 @@ router.route('/')
 
 router.route('/:id')
     .get(catchAsync(post.showPost))
-    .patch(catchAsync(post.updatePost))
-    .delete(catchAsync(post.deletePost))
+    .patch(isAuthor, catchAsync(post.updatePost))
+    .delete(isAuthor, catchAsync(post.deletePost))
 
 module.exports = router;

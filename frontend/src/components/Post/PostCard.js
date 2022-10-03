@@ -48,7 +48,7 @@ export default function PostCard({ post, options }) {
                             </small>
                             <h4 className='mt-1'>{post.title}</h4>
                         </div>
-                        {options &&
+                        {options && user.username === post.author.username &&
                             <Dropdown isOpen={dropdownOpen} toggle={toggle}>
                                 <DropdownToggle data-toggle="dropdown"
                                     tag="button" className='btn text-white'>
