@@ -32,7 +32,7 @@ module.exports.signup = async (req, res, next) => {
 
         const token = createToken(user._id);
 
-        res.status(200).json({ email, token });
+        res.status(200).json({ username, token });
     } catch (e) {
         res.status(401).json({ error: e.message });
     }

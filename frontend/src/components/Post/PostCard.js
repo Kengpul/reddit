@@ -8,7 +8,6 @@ import {
     Card,
     CardBody,
     CardTitle,
-    CardSubtitle,
     CardText,
     Dropdown,
     DropdownToggle,
@@ -42,8 +41,13 @@ export default function PostCard({ post, options }) {
         <Container className='postCard my-3'>
             <Card>
                 <CardBody>
-                    <CardTitle tag="h5" className='d-flex justify-content-between'>
-                        {post.title}
+                    <CardTitle className='d-flex justify-content-between'>
+                        <div>
+                            <small className='text-muted'>
+                                Posted by {post.author.username} {formatDistanceToNow(new Date(post.updatedAt), { addSuffix: true })}
+                            </small>
+                            <h4 className='mt-1'>{post.title}</h4>
+                        </div>
                         {options &&
                             <Dropdown isOpen={dropdownOpen} toggle={toggle}>
                                 <DropdownToggle data-toggle="dropdown"
@@ -61,12 +65,6 @@ export default function PostCard({ post, options }) {
                             </Dropdown>
                         }
                     </CardTitle>
-                    <CardSubtitle
-                        className="mb-2 text-muted"
-                        tag="h6"
-                    >
-                        {formatDistanceToNow(new Date(post.updatedAt), { addSuffix: true })}
-                    </CardSubtitle>
                     <CardText>
                         {post.text}
                     </CardText>

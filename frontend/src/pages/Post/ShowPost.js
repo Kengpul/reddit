@@ -28,7 +28,6 @@ export default function ShowPost() {
                     <Aside />
                 </Col>
             </Row>
-
         </Container>
     )
 }

@@ -13,11 +13,11 @@ export default function PostCardPending() {
         <Container className="postCard">
             <Card>
                 <CardBody aria-hidden='true'>
-                    <CardTitle tag="h5" className='d-flex justify-content-between placeholder-wave'>
+                    <CardTitle tag="h5" className='d-flex justify-content-between placeholder-wave text-muted'>
                         <span className='placeholder col-3'></span>
                     </CardTitle>
                     <CardSubtitle
-                        className="mb-2 text-muted"
+                        className="mb-2 "
                         tag="h6"
                     >
                         <span className='placeholder col-4'></span>
