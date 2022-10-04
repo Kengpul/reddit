@@ -10,7 +10,7 @@ export const useAuthenticate = (auth) => {
         setError(null);
         setIsPending(true);
 
-        const response = await fetch(`/${auth}`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URI}/${auth}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, email, password })

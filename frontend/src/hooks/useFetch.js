@@ -10,7 +10,7 @@ export function useFetch(query) {
     useEffect(() => {
         const fetchData = async () => {
             setPending(true);
-            const response = await fetch(query, {
+            const response = await fetch(`${process.env.REACT_APP_API_URI}${query}`, {
                 headers: { 'Authorization': `Bearers ${user.token}` }
             });
             const json = await response.json();

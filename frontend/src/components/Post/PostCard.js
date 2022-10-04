@@ -25,7 +25,7 @@ export default function PostCard({ post, options }) {
 
     const handleDelete = async (id) => {
         if (!user) return;
-        const response = await fetch(`/post/${id}`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URI}/post/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

@@ -29,7 +29,7 @@ export default function Submit() {
     useEffect(() => {
         if (id) {
             const fetchPost = async () => {
-                const response = await fetch(`/post/${id}`, {
+                const response = await fetch(`${process.env.REACT_APP_API_URI}/post/${id}`, {
                     headers: { 'Authorization': `Bearer ${user.token}` }
                 });
                 const post = await response.json();
@@ -51,7 +51,9 @@ export default function Submit() {
         if (!text) return setCheckText(true);
         if (!user) return setError('Unauthorized');
 
-        const query = id ? `/post/${id}` : '/post';
+        const query = id ?
+            `${process.env.REACT_APP_API_URI}/post/${id}` :
+            `${process.env.REACT_APP_API_URI}/post`;
         const response = await fetch(query, {
             method: id ? 'PATCH' : 'POST',
             headers: {

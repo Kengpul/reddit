@@ -6,6 +6,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const ExpressError = require('./utils/ExpressError');
+const cors = require('cors');
 
 const postRoutes = require('./routes/post');
 const userRoutes = require('./routes/user');
@@ -18,6 +19,12 @@ db.once('open', () => {
     console.log('Database connected');
 });
 
+const corsOptions = {
+    origin: '*',
+    credentials: true,
+    optionSuccessStatus: 200
+}
+app.use(cors(corsOptions))
 app.use(express.json());
 
 app.use('/', userRoutes);
