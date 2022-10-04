@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLogout } from '../../hooks/useLogout';
 import { useAuthContext } from '../../hooks/useAuthContext';
@@ -25,9 +25,10 @@ export default function NavigationBar() {
                 <Collapse isOpen={isOpen} navbar>
                     <div className='ms-auto nav-user'>
                         {user ?
-                            <>
+                            <div className='d-flex justify-content-center align-items-center'>
+                                <span className='me-3 text-muted'>{user.username}</span>
                                 <Button onClick={logout}>Logout</Button>
-                            </> :
+                            </div> :
                             <>
                                 <Link to='/login'>Login</Link>
                                 <Link to='/signup'>Signup</Link>

@@ -10,7 +10,7 @@ import './PostCard.css'
 
 export default function PostCardPending() {
     return (
-        <Container className="postCard">
+        <Container className="postCard mt-3">
             <Card>
                 <CardBody aria-hidden='true'>
                     <CardTitle tag="h5" className='d-flex justify-content-between placeholder-wave text-muted'>
