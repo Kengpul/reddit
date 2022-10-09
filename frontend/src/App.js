@@ -13,22 +13,24 @@ import Signup from './pages/User/Signup';
 import Login from './pages/User/Login';
 
 function App() {
-  const { user } = useAuthContext();
+  const { user, authReady } = useAuthContext();
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <NavigationBar />
-        <Routes>
-          <Route path='/' element={user ? <Home /> : <Navigate to='/login' />} />
-          <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/' />} />
-          <Route path='/login' element={!user ? <Login /> : <Navigate to='/' />} />
-          <Route path='/submit' element={user ? <Submit /> : <Navigate to='/login' />} />
-          <Route path='/post/:id' element={user ? <ShowPost /> : <Navigate to='/login' />} />
-          <Route path='/post/:id/edit' element={user ? <Submit /> : <Navigate to='/login' />} />
-          <Route path='*' element={<Error />} />
-        </Routes>
-      </BrowserRouter>
+      {authReady &&
+        <BrowserRouter>
+          <NavigationBar />
+          <Routes>
+            <Route path='/' element={user ? <Home /> : <Navigate to='/login' />} />
+            <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/' />} />
+            <Route path='/login' element={!user ? <Login /> : <Navigate to='/' />} />
+            <Route path='/submit' element={user ? <Submit /> : <Navigate to='/login' />} />
+            <Route path='/post/:id' element={user ? <ShowPost /> : <Navigate to='/login' />} />
+            <Route path='/post/:id/edit' element={user ? <Submit /> : <Navigate to='/login' />} />
+            <Route path='*' element={<Error />} />
+          </Routes>
+        </BrowserRouter>
+      }
     </div>
   );
 }

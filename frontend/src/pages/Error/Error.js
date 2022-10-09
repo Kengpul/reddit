@@ -1,16 +1,24 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 import { Container } from "reactstrap";
 
 export default function Error() {
     const [error, setError] = useState(null);
     const location = useLocation();
+    const { user } = useAuthContext();
 
     useEffect(() => {
         const fetchMessage = async () => {
-            const response = await fetch(location.pathname);
+            const config = user ? {
+                headers: {
+                    'Authorization': `Bearers ${user.token}`
+                }
+            } : null
+
+            const response = await fetch(process.env.REACT_APP_API_URI + location.pathname, config);
             const json = await response.json();
             if (json) {
                 setError(json.error);
@@ -21,8 +29,9 @@ export default function Error() {
                 })
             }
         }
+
         fetchMessage();
-    }, [location.pathname])
+    }, [location.pathname, user])
 
     return (
         <Container className="d-flex justify-content-center text-center my-5">
