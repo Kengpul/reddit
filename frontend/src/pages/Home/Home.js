@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 
 import { Container, Row, Col } from 'reactstrap';
-import './Home.css';
 
 import CreatePost from "../../components/Post/CreatePost";
 import PostCard from "../../components/Post/PostCard";

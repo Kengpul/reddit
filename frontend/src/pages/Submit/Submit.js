@@ -46,10 +46,10 @@ export default function Submit() {
         e.preventDefault();
         setCheckTitle(false);
         setCheckText(false);
-        setPending(true);
         if (!title) return setCheckTitle(true);
         if (!text) return setCheckText(true);
         if (!user) return setError('Unauthorized');
+        setPending(true);
 
         const query = id ?
             `${process.env.REACT_APP_API_URI}/post/${id}` :

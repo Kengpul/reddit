@@ -1,0 +1,7 @@
+.community .header-bg {
+    background-color: #ff4500;
+}
+
+.community .header-title {
+    background-color: var(--primary-color);
+}
