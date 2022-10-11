@@ -10,6 +10,7 @@ const cors = require('cors');
 
 const postRoutes = require('./routes/post');
 const userRoutes = require('./routes/user');
+const communityRoutes = require('./routes/community');
 
 const dbUrl = process.env.MONGO_URI || 'mongodb://localhost:27017/reddit';
 mongoose.connect(dbUrl);
@@ -29,6 +30,7 @@ app.use(express.json());
 
 app.use('/', userRoutes);
 app.use('/post', postRoutes);
+app.use('/community', communityRoutes);
 
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404));

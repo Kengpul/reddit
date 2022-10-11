@@ -1,0 +1,10 @@
+.create-community .card {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.create-community .form-control {
+    background-color: var(--primary-color);
+    color: white;
+    border: .5px solid grey;
+}

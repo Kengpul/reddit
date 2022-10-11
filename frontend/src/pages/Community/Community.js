@@ -13,7 +13,7 @@ import {
 } from 'reactstrap';
 import './Community.css'
 
-export const Community = () => {
+export default function Community() {
     const { data: posts, pending } = useFetch('/post');
 
     return (
